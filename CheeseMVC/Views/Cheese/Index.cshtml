@@ -1,5 +1,24 @@
 ﻿@{
     Layout = null;
+
 }
 
 <h1>My Cheese</h1>
+
+<!-- this adds a link to the Add display form -->
+<p><a asp-controller="Cheese" asp-action="Add">Add Cheese</a></p>
+
+@if (ViewBag.cheeses.Count == 0)
+{
+    <p><h3>NO CHEESES YET!</h3></p>
+}
+
+<ul>
+
+    @foreach(string cheese in ViewBag.cheeses)
+    {
+        <li>@cheese</li>
+    }
+
+
+</ul>
