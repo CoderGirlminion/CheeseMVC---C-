@@ -34,11 +34,6 @@ namespace CheeseMVC.Controllers
         //handles the (Add) form submission
         public IActionResult NewCheese(string name, string description = "")
         {
-            //add new cheese to the list of cheeses
-            //uses the constructor with parameters
-            Cheeses.Add(new Cheese(name, description));
-
-
             //uses the default constructor
             //property initialize method that constructs an object
             Cheese newCheese = new Cheese
@@ -47,14 +42,8 @@ namespace CheeseMVC.Controllers
                 Description = description
             };
 
-            //uses the default constructor
-            //an empty cheese object that sets the properties one at a time
-            /*
-             Cheese newCheese = new Cheese();
-               newCheese.Description = description;
-               newCheese.Name = name;
-            */
-
+            //add new cheese to the list of cheeses, using the above constructor
+            Cheeses.Add(newCheese);
 
             return Redirect("/Cheese");
 

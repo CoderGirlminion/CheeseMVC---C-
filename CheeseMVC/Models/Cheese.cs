@@ -10,13 +10,6 @@ namespace CheeseMVC.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        //constructor with parameter(properties)
-        /*public Cheese(string name, string description)
-        {
-            Name = name;
-            Description = description;
-        }*/
-
         //default constructor
         public Cheese() { }
 
