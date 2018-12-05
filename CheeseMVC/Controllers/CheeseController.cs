@@ -46,7 +46,24 @@ namespace CheeseMVC.Controllers
             Cheeses.Add(newCheese);
 
             return Redirect("/Cheese");
+        }
 
+        //removal of cheeses
+        public IActionResult Remove()
+        {
+            ViewBag.title = "Remove Cheeses";
+            ViewBag.cheeses = Cheeses;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(int[] cheeseIds)
+        {
+            foreach(int cheeseId in cheeseIds)
+            {
+                Cheeses.RemoveAll(x => x.CheeseId == cheeseId);
+            }
+            return Redirect("/");
         }
     
     }
