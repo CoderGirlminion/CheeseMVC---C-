@@ -11,7 +11,6 @@ namespace CheeseMVC.Controllers
 {
     public class CheeseController : Controller
     {
-        
         // GET: /<controller>/
         public IActionResult Index()
         {
