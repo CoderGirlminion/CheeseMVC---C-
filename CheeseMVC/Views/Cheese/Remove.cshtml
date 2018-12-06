@@ -5,7 +5,7 @@
     @foreach(Cheese cheese in ViewBag.cheeses)
     {
         <input type="checkbox" name="cheeseIds" Id="@cheese.CheeseId" value="@cheese.CheeseId" />
-        <label for="cheese.CheeseId">@cheese.Name</label>
+        <label for="@cheese.CheeseId">@cheese.Name</label>
         <br />
     }
 
