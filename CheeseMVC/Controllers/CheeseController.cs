@@ -27,16 +27,8 @@ namespace CheeseMVC.Controllers
         [Route("Cheese/Add")]
         [HttpPost]
         //handles the (Add) form submission
-        public IActionResult NewCheese(string name, string description = "")
+        public IActionResult NewCheese(Cheese newCheese)
         {
-            //uses the default constructor
-            //property initialize method that constructs an object
-            Cheese newCheese = new Cheese
-            {
-                Name = name,
-                Description = description
-            };
-
             //add new cheese to the list of cheeses, using the above constructor
             CheeseData.Add(newCheese);
 
