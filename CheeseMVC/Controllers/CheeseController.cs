@@ -30,16 +30,21 @@ namespace CheeseMVC.Controllers
         //handles the (Add) form submission
         public IActionResult Add(AddCheeseViewModel addCheeseViewModel)
         {
-            Cheese newCheese = new Cheese
+            if (ModelState.IsValid)
             {
-                Name = addCheeseViewModel.Name,
-                Description = addCheeseViewModel.Description
-            };
+                Cheese newCheese = new Cheese
+                {
+                    Name = addCheeseViewModel.Name,
+                    Description = addCheeseViewModel.Description
+                };
+                //add new cheese to the list of cheeses, using the above constructor
+                CheeseData.Add(newCheese);
 
-            //add new cheese to the list of cheeses, using the above constructor
-            CheeseData.Add(newCheese);
+                return Redirect("/Cheese");
+            }
+            //re-render form if ViewModel is not valid
+            return View(addCheeseViewModel);
 
-            return Redirect("/Cheese");
         }
 
         //removal of cheeses
