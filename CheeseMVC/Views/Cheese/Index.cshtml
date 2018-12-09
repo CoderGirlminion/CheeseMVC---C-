@@ -1,7 +1,7 @@
-﻿
+﻿@model List<CheeseMVC.Models.Cheese>
 <!-- this adds a link to the Add display form -->
 
-@if (ViewBag.cheeses.Count == 0)
+@if (Model.Count == 0)
 {
     <p><h3>NO CHEESES YET!</h3></p>
 }
@@ -12,7 +12,7 @@
         <th>Description</th>
     </tr>
 
-    @foreach (Cheese cheese in ViewBag.cheeses)
+    @foreach (Cheese cheese in Model)
     {
         <tr>
             <td>@cheese.Name</td>

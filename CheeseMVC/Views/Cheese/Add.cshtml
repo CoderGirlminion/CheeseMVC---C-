@@ -1,15 +1,19 @@
-﻿<h1>Add Cheese</h1>
+﻿@model CheeseMVC.ViewModels.AddCheeseViewModel
 
-<form method="post">
+<h1>Add Cheese</h1>
+
+<!---'asp'-helper tags provided by Razor engine are used to generate some html that is tied to the view model classes
+this code is now cleaner and tied to the view model-->
+<form asp-controller="Cheese" asp-action="Add" method="post">
 
     <div class="form-group">
-        <label for="name">Name</label>
-        <input class="form-control" name="name" id="name" type="text" />
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
     </div>
 
     <div class="form-group">
-        <label for="description">Description</label>
-        <input class="form-control" name="description" id="description" type="text" />
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description" />
     </div>
 
     <input type = "submit" value="Add Cheese" />
