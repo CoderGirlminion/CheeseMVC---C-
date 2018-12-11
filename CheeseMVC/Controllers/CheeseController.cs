@@ -35,7 +35,8 @@ namespace CheeseMVC.Controllers
                 Cheese newCheese = new Cheese
                 {
                     Name = addCheeseViewModel.Name,
-                    Description = addCheeseViewModel.Description
+                    Description = addCheeseViewModel.Description,
+                    Type = addCheeseViewModel.Type
                 };
                 //add new cheese to the list of cheeses, using the above constructor
                 CheeseData.Add(newCheese);
