@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CheeseMVC.Models;
 using CheeseMVC.ViewModels;
+using CheeseMVC.Data;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,10 +13,20 @@ namespace CheeseMVC.Controllers
 {
     public class CheeseController : Controller
     {
+        private CheeseDbContext context;
+
+        //a constructor
+        public CheeseController(CheeseDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Cheese> cheeses = CheeseData.GetAll();
+            //retrieving a list of the cheeses
+            List<Cheese> cheeses = context.Cheeses.ToList();
+
             return View(cheeses);
         }
 
@@ -38,8 +49,10 @@ namespace CheeseMVC.Controllers
                     Description = addCheeseViewModel.Description,
                     Type = addCheeseViewModel.Type
                 };
-                //add new cheese to the list of cheeses, using the above constructor
-                CheeseData.Add(newCheese);
+                //add new cheese to the DB set of cheeses, using the above constructor
+                context.Cheeses.Add(newCheese);
+                //saving changes to the database
+                context.SaveChanges();
 
                 return Redirect("/Cheese");
             }
@@ -52,7 +65,7 @@ namespace CheeseMVC.Controllers
         public IActionResult Remove()
         {
             ViewBag.title = "Remove Cheeses";
-            ViewBag.cheeses = CheeseData.GetAll();
+            ViewBag.cheeses = context.Cheeses.ToList();
             return View();
         }
 
@@ -62,8 +75,12 @@ namespace CheeseMVC.Controllers
             foreach(int cheeseId in cheeseIds)
             {
                 //Cheeses.RemoveAll(x => x.CheeseId == cheeseId);
-                CheeseData.Remove(cheeseId);
+                Cheese theCheese = context.Cheeses.Single(c => c.ID == cheeseId);
+                context.Cheeses.Remove(theCheese);
             }
+
+            context.SaveChanges();
+
             return Redirect("/");
         }
     
